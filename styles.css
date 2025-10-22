@@ -482,64 +482,118 @@
                 margin-bottom: 30px;
             }
         }
-
-        /* Estilos del menú hamburguesa */
-.hamburger {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-}
-
-.bar {
-    display: block;
+/* Header y Navegación - Menú tradicional */
+header {
+    background-color: var(--primary-color);
+    position: fixed;
     width: 100%;
-    height: 3px;
-    background-color: var(--text-light);
-    transition: var(--transition);
-    border-radius: 2px;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
 }
 
-/* Menú móvil */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo {
+    color: var(--text-light);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.logo span {
+    color: var(--secondary-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--text-light);
+    font-weight: 500;
+    padding: 8px 0;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Ajustar el hero para el header fijo */
+.hero {
+    margin-top: 80px;
+}
+
+/* Responsive para tablets */
 @media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
+    .navbar {
         flex-direction: column;
-        background-color: var(--primary-color);
-        width: 100%;
-        text-align: center;
-        transition: var(--transition);
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 20px 0;
-        z-index: 999;
+        gap: 15px;
     }
+    
+    .nav-menu {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+    }
+}
 
-    .nav-menu.active {
-        left: 0;
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+    .nav-menu {
+        gap: 15px;
     }
+    
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 5px 0;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+/* Animaciones para las tarjetas */
+.service-card, .product-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
 
-    .nav-item {
-        margin: 15px 0;
-    }
+.service-card.visible, .product-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-    /* Animación del hamburguesa cuando está activo */
-    .hamburger.active .bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-
-    .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
+/* Efecto hover mejorado para tarjetas */
+.service-card:hover, .product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
